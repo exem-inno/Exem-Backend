@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 public class DomainController {
@@ -17,10 +17,9 @@ public class DomainController {
     @Autowired
     ProductRepository productRepository;
 
-    @GetMapping(value = "/api/cluster/{cluster_id}")
-    public ResponseEntity getCluster(@PathVariable String cluster_id) {
-        Domain list = productRepository.findBy_id(cluster_id);
-//        ArrayList<Domain> list2 = productRepository.findDistinctBy_sourceNotNull();
+    @GetMapping(value = "/api/cluster/{id}")
+    public ResponseEntity getCluster(@PathVariable String id) {
+        Domain list = productRepository.findBy_id(id);
         return ResponseEntity.ok().body(ResponseClusterIdDto.of(list.get_source().getCluster()));
     }
 }
