@@ -1,7 +1,6 @@
 package com.backend;
 
 import com.backend.config.AppProperties;
-import com.backend.model.Domain;
 import com.backend.repository.ProductRepository;
 import com.backend.repository.UserRepository;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +11,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackageClasses = UserRepository.class)
-@EnableMongoRepositories(basePackageClasses = ProductRepository.class)
+@EnableMongoRepositories(basePackageClasses = {ProductRepository.class})
 @EnableConfigurationProperties({AppProperties.class})
 public class BackendApplication {
 
