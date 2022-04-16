@@ -19,7 +19,6 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
                          AuthenticationException e) throws IOException, ServletException {
         logger.error("Responding with unauthorized error. Message - {}", e.getMessage());
 
-        httpServletResponse.sendRedirect("http://localhost:8080/");
+        httpServletResponse.sendRedirect("http://localhost:3000/auth/login");
     }
-
 }
