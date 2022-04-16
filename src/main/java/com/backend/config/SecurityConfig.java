@@ -24,7 +24,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(
+@EnableGlobalMethodSecurity
+        (
         securedEnabled = true,
         jsr250Enabled = true,
         prePostEnabled = true
@@ -104,7 +105,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                             "/swagger-resources/**",
                             "/v2/**")
                         .permitAll()
-                    .antMatchers("/auth/**", "/oauth2/**", "/oauth/**")
+                    .antMatchers("/auth/**", "/oauth2/**", "/oauth/**", "user/**")
                         .permitAll()
                     .anyRequest()
                         .authenticated()

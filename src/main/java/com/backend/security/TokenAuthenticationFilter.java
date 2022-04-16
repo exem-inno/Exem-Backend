@@ -47,8 +47,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
     }
 
     private String getJwtFromRequest(HttpServletRequest request) {
-
-        if (request.isRequestedSessionIdFromCookie()) {
+        if (request.getCookies() != null) {
             Cookie[] cookie = request.getCookies();
             if (cookie[0].getValue() != null)
                 return cookie[0].getValue();
