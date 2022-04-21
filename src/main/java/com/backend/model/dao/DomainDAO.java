@@ -64,34 +64,33 @@ public class DomainDAO {
         List<FromToDto> fromToDtoList = new LinkedList<>();
         List<ServiceID> serviceIDList = findServiceArray();
 
-        sourceList.forEach(e -> {
+        for (FromTo e : sourceList) {
+            String from_s = "";
+            String to_s = "";
             for (int i = 0; i < serviceIDList.size(); i++) {
-                String from_s = "";
-                String to_s = "";
                 if (serviceIDList.get(i).getService_id().contains(e.getFrom())) {
                     from_s = serviceIDList.get(i).get_id();
                 }
                 if (serviceIDList.get(i).getService_id().contains(e.getTo())) {
                     to_s = serviceIDList.get(i).get_id();
                 }
-                if (from_s == "" || to_s == "")
-                    continue;
-                FromToDto dto = new FromToDto(from_s, to_s, 1);
-                boolean check = false;
-
-                if (fromToDtoList.size() != 0) {
-                    for (int j = 0; j < fromToDtoList.size(); j++) {
-                        if (fromToDtoList.get(j).equals(dto)) {
-                            fromToDtoList.get(j).plusCount();
-                            check = true;
-                        }
-                    }
-                    if (!check)
-                        fromToDtoList.add(dto);
-                } else
-                    fromToDtoList.add(dto);
             }
-        });
+            if (from_s == "" || to_s == "")
+                continue;
+            FromToDto dto = new FromToDto(from_s, to_s, 1);
+            boolean check = false;
+            if (fromToDtoList.size() != 0) {
+                for (int j = 0; j < fromToDtoList.size(); j++) {
+                    if (fromToDtoList.get(j).equals(dto)) {
+                        fromToDtoList.get(j).plusCount();
+                        check = true;
+                    }
+                }
+                if (!check)
+                    fromToDtoList.add(dto);
+            } else
+                fromToDtoList.add(dto);
+        }
         return fromToDtoList;
     }
 
