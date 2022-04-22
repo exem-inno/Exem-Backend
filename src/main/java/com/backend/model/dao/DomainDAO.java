@@ -75,7 +75,7 @@ public class DomainDAO {
                     to_s = serviceIDList.get(i).get_id();
                 }
             }
-            if (from_s == "" || to_s == "")
+            if (from_s == "" || to_s == "" || (to_s == from_s))
                 continue;
             FromToDto dto = new FromToDto(from_s, to_s, 1);
             boolean check = false;
